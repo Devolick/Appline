@@ -1,0 +1,4 @@
+F:\Development\C#\Core\Appline\Appline\obj\Debug\netstandard1.3\Appline.csprojAssemblyReference.cache
+F:\Development\C#\Core\Appline\Appline\obj\Debug\netstandard1.3\Appline.csproj.CoreCompileInputs.cache
+F:\Development\C#\Core\Appline\Appline\obj\Debug\netstandard1.3\Appline.AssemblyInfoInputs.cache
+F:\Development\C#\Core\Appline\Appline\obj\Debug\netstandard1.3\Appline.AssemblyInfo.cs

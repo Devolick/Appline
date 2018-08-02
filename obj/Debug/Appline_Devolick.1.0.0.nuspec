@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Appline_Devolick</id>
+    <version>1.0.0</version>
+    <authors>Dzmitry Dym</authors>
+    <owners>Dzmitry Dym</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Appline allow to communicate between processes with Anonymous Pipes, to send messages or complex objects.</description>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="F:\Development\C#\Core\Appline\Appline\bin\Debug\netstandard2.0\Appline.dll" target="lib\netstandard2.0\Appline.dll" />
+  </files>
+</package>
