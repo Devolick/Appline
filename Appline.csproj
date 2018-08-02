@@ -6,6 +6,16 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageId>Appline</PackageId>
     <Description>Appline allow to communicate between processes with Anonymous Pipes, to send messages or complex objects.</Description>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/Devolick/Appline/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>Anonymous Pipes</PackageTags>
+    <RepositoryType>github</RepositoryType>
+    <PackageProjectUrl>http://nonedevelopment.net/</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Devolick/Appline/master/appline_icon.ico</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Devolick/Appline</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\Appline.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

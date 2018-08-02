@@ -11,6 +11,9 @@ namespace Appline
 {
     public class MessageLine : IDisposable
     {
+        /// <summary>
+        /// The notification object.
+        /// </summary>
         public NotifyMessage Notify { get; internal set; }
 
         internal PipeStream pipeIn;
@@ -22,7 +25,11 @@ namespace Appline
         internal Process process;
         private System.Timers.Timer timer;
         private bool isOutOfTime;
+        internal int timeout;
 
+        /// <summary>
+        /// Indicates the status of the line.
+        /// </summary>
         public bool IsConnected {
             get
             {
@@ -31,7 +38,13 @@ namespace Appline
                 return inValue && outValue;
             }
         }
+        /// <summary>
+        /// Indicates whether the process is running.
+        /// </summary>
         public bool IsRunning { get; internal set; }
+        /// <summary>
+        /// Indicates whether this line is the main line.
+        /// </summary>
         public bool IsLauncher { get; internal set; }
 
         protected MessageLine()
@@ -46,6 +59,10 @@ namespace Appline
             Notify = notify;
         }
 
+        /// <summary>
+        /// Sends the string to the other end of the line.
+        /// </summary>
+        /// <param name="msg">String message.</param>
         public virtual void Send(string msg)
         {
             if (IsRunning)
@@ -61,7 +78,7 @@ namespace Appline
                 pipeOut.WaitForPipeDrain();
             }
         }
-        public virtual void Receive() {
+        protected virtual void Receive() {
             string msg = string.Empty;
             while (IsConnected && IsRunning)
             {
@@ -72,6 +89,9 @@ namespace Appline
                 }
             }
         }
+        /// <summary>
+        /// Closes the line.
+        /// </summary>
         public void Close()
         {
             if (IsRunning)
@@ -88,7 +108,7 @@ namespace Appline
 
         internal void Timer()
         {
-            timer = new System.Timers.Timer(5000);
+            timer = new System.Timers.Timer(timeout);
             timer.Elapsed += (sender, e) =>
             {
                 timer.Stop();

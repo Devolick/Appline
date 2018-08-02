@@ -13,7 +13,7 @@ namespace Appline
         public const string XML = "x";
         public const string SYNC = "s";
 
-        public static string UnMark(this string str)
+        internal static string UnMark(this string str)
         {
             Regex regex = new Regex("^[0mjxs]");
             if (regex.IsMatch(str)) { str = regex.Replace(str, string.Empty); }

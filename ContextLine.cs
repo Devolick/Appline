@@ -6,6 +6,9 @@ namespace Appline
     public class ContextLine<TContext>: MessageLine, IDisposable
         where TContext : class
     {
+        /// <summary>
+        /// The notification object.
+        /// </summary>
         public new NotifyContext<TContext> Notify {
             get { return base.Notify as NotifyContext<TContext>; }
             set { base.Notify = value; }
@@ -15,7 +18,7 @@ namespace Appline
         internal ContextLine(NotifyContext<TContext> notify)
             : base(notify) { }
 
-        public override void Receive()
+        protected override void Receive()
         {
             string msg = string.Empty;
             while (IsConnected && IsRunning)
@@ -35,17 +38,16 @@ namespace Appline
                 }
             }
         }
-        public bool SaveChanges(TContext context)
+        /// <summary>
+        /// Sends the object to the other end of the line.
+        /// </summary>
+        /// <param name="context"></param>
+        public void SaveChanges(TContext context)
         {
-            if (context != null)
-            {
-                string msg = $"{Markers.JSON}{Base64Encode(JsonConvert.SerializeObject(context))}";
-                writer.WriteLine(msg);
+            string msg = $"{Markers.JSON}{Base64Encode(JsonConvert.SerializeObject(context))}";
+            writer.WriteLine(msg);
 
-                pipeOut.WaitForPipeDrain();
-                return true;
-            }
-            return false;
+            pipeOut.WaitForPipeDrain();
         }
     }
 }

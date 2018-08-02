@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Appline</name>
+    </assembly>
+    <members>
+        <member name="P:Appline.ContextLine`1.Notify">
+            <summary>
+            The notification object.
+            </summary>
+        </member>
+        <member name="M:Appline.ContextLine`1.SaveChanges(`0)">
+            <summary>
+            Sends the object to the other end of the line.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Appline.LineFactory.Launcher(Appline.NotifyMessage,System.String,System.Int32,System.Boolean,System.String)">
+            <summary>
+            Generates the main line object and starts the second process.
+            </summary>
+            <param name="notify">The notification object.</param>
+            <param name="filePath">The path of the second process.</param>
+            <param name="timeout">Time waiting for the connection response. Example 3000ms</param>
+            <param name="dotnet">Run as dotnet.</param>
+            <param name="args">Arguments for second process.</param>
+            <returns>Returns main line.</returns>
+        </member>
+        <member name="M:Appline.LineFactory.Launcher(System.String,System.Int32,System.Boolean,System.String)">
+            <summary>
+            Generates the main line object and starts the second process.
+            </summary>
+            <param name="filePath">The path of the second process.</param>
+            <param name="timeout">Time waiting for the connection response.</param>
+            <param name="dotnet">Run as dotnet.</param>
+            <param name="args">Arguments for second process.</param>
+            <returns>Returns main line.</returns>
+        </member>
+        <member name="M:Appline.LineFactory.Launcher``1(Appline.NotifyContext{``0},System.String,System.Int32,System.Boolean,System.String)">
+            <summary>
+            Generates the main line object and starts the second process.
+            </summary>
+            <typeparam name="TContext">Type of the transmitted context.</typeparam>
+            <param name="notify">The notification object.</param>
+            <param name="filePath">The path of the second process.</param>
+            <param name="timeout">Time waiting for the connection response.</param>
+            <param name="dotnet">Run as dotnet.</param>
+            <param name="args">Arguments for second process.</param>
+            <returns>Returns main line.</returns>
+        </member>
+        <member name="M:Appline.LineFactory.Application(Appline.NotifyMessage,System.String)">
+            <summary>
+            Generates the other side object of the line.
+            </summary>
+            <param name="notify">The notification object.</param>
+            <param name="args">Pass entry point args for connect.</param>
+            <returns>Returns the other side of the line.</returns>
+        </member>
+        <member name="M:Appline.LineFactory.Application``1(Appline.NotifyContext{``0},System.String)">
+            <summary>
+            Generates the other side object of the line.
+            </summary>
+            <typeparam name="TContext">Type of the transmitted context.</typeparam>
+            <param name="notify">The notification object.</param>
+            <param name="args">Pass entry point args for connect.</param>
+            <returns>Returns the other side of the line.</returns>
+        </member>
+        <member name="M:Appline.LineFactory.Application(System.String)">
+            <summary>
+            Generates the other side object of the line.
+            </summary>
+            <param name="args">Pass entry point args for connect.</param>
+            <returns>Returns the other side of the line.</returns>
+        </member>
+        <member name="M:Appline.LineFactory.Application(System.String[])">
+            <summary>
+            Generates the other side object of the line.
+            </summary>
+            <param name="args">Pass entry point args for connect.</param>
+            <returns>Returns the other side of the line.</returns>
+        </member>
+        <member name="M:Appline.LineFactory.Application(Appline.NotifyMessage,System.String[])">
+            <summary>
+            Generates the other side object of the line.
+            </summary>
+            <param name="notify">The notification object.</param>
+            <param name="args">Pass entry point args for connect.</param>
+            <returns>Returns the other side of the line.</returns>
+        </member>
+        <member name="M:Appline.LineFactory.Application``1(Appline.NotifyContext{``0},System.String[])">
+            <summary>
+            Generates the other side object of the line.
+            </summary>
+            <typeparam name="TContext">Type of the transmitted context.</typeparam>
+            <param name="notify">The notification object.</param>
+            <param name="args">Pass entry point args for connect.</param>
+            <returns>Returns the other side of the line.</returns>
+        </member>
+        <member name="P:Appline.MessageLine.Notify">
+            <summary>
+            The notification object.
+            </summary>
+        </member>
+        <member name="P:Appline.MessageLine.IsConnected">
+            <summary>
+            Indicates the status of the line.
+            </summary>
+        </member>
+        <member name="P:Appline.MessageLine.IsRunning">
+            <summary>
+            Indicates whether the process is running.
+            </summary>
+        </member>
+        <member name="P:Appline.MessageLine.IsLauncher">
+            <summary>
+            Indicates whether this line is the main line.
+            </summary>
+        </member>
+        <member name="M:Appline.MessageLine.Send(System.String)">
+            <summary>
+            Sends the string to the other end of the line.
+            </summary>
+            <param name="msg">String message.</param>
+        </member>
+        <member name="M:Appline.MessageLine.Close">
+            <summary>
+            Closes the line.
+            </summary>
+        </member>
+        <member name="E:Appline.NotifyContext`1.ContextChanges">
+            <summary>
+            It will be called when the context object is received.
+            </summary>
+        </member>
+        <member name="E:Appline.NotifyMessage.Timeout">
+            <summary>
+            It will be called if the start fails for the allotted time.
+            </summary>
+        </member>
+        <member name="E:Appline.NotifyMessage.Connected">
+            <summary>
+            It will be called when the connection is successful.
+            </summary>
+        </member>
+        <member name="E:Appline.NotifyMessage.Disconnected">
+            <summary>
+            It will be called when the connection fails.
+            </summary>
+        </member>
+        <member name="E:Appline.NotifyMessage.Message">
+            <summary>
+            It will be called when a string is received.
+            </summary>
+        </member>
+    </members>
+</doc>
