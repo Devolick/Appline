@@ -4,9 +4,20 @@
         <name>Appline</name>
     </assembly>
     <members>
+        <member name="T:Appline.ContextLine`1">
+            <summary>
+            Line for the transfer of complex objects.
+            </summary>
+            <typeparam name="TContext">Type of the transmitted object</typeparam>
+        </member>
         <member name="P:Appline.ContextLine`1.Notify">
             <summary>
             The notification object.
+            </summary>
+        </member>
+        <member name="M:Appline.ContextLine`1.Receive">
+            <summary>
+            Contains the cycle for receiving a message
             </summary>
         </member>
         <member name="M:Appline.ContextLine`1.SaveChanges(`0)">
@@ -14,6 +25,23 @@
             Sends the object to the other end of the line.
             </summary>
             <param name="context"></param>
+        </member>
+        <member name="T:Appline.LineException">
+            <summary>
+            The exception that is throw when there is a line fault.
+            </summary>
+        </member>
+        <member name="M:Appline.LineException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the LineException class to handle exceptions for working with a line.
+            </summary>
+            <param name="msg">A string that describes that error.</param>
+            <param name="ex">The exception that is cause current exception. If the innerException parameter is not, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="T:Appline.LineFactory">
+            <summary>
+            Factory for creating lines
+            </summary>
         </member>
         <member name="M:Appline.LineFactory.Launcher(Appline.NotifyMessage,System.String,System.Int32,System.Boolean,System.String)">
             <summary>
@@ -96,6 +124,11 @@
             <param name="args">Pass entry point args for connect.</param>
             <returns>Returns the other side of the line.</returns>
         </member>
+        <member name="T:Appline.MessageLine">
+            <summary>
+            Line for the transfer of messages.
+            </summary>
+        </member>
         <member name="P:Appline.MessageLine.Notify">
             <summary>
             The notification object.
@@ -116,20 +149,56 @@
             Indicates whether this line is the main line.
             </summary>
         </member>
+        <member name="M:Appline.MessageLine.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
         <member name="M:Appline.MessageLine.Send(System.String)">
             <summary>
             Sends the string to the other end of the line.
             </summary>
             <param name="msg">String message.</param>
         </member>
+        <member name="M:Appline.MessageLine.Receive">
+            <summary>
+            Contains the cycle for receiving a message
+            </summary>
+        </member>
         <member name="M:Appline.MessageLine.Close">
             <summary>
             Closes the line.
             </summary>
         </member>
+        <member name="M:Appline.MessageLine.Dispose">
+            <summary>
+            Release All resources used by the line.
+            </summary>
+        </member>
+        <member name="T:Appline.NotifyContext`1">
+            <summary>
+            This object registers events for listening.
+            </summary>
+            <typeparam name="TContext"></typeparam>
+        </member>
+        <member name="M:Appline.NotifyContext`1.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
         <member name="E:Appline.NotifyContext`1.ContextChanges">
             <summary>
             It will be called when the context object is received.
+            </summary>
+        </member>
+        <member name="T:Appline.NotifyMessage">
+            <summary>
+            This object registers events for listening.
+            </summary>
+        </member>
+        <member name="M:Appline.NotifyMessage.#ctor">
+            <summary>
+            Default constructor
             </summary>
         </member>
         <member name="E:Appline.NotifyMessage.Timeout">
@@ -150,6 +219,11 @@
         <member name="E:Appline.NotifyMessage.Message">
             <summary>
             It will be called when a string is received.
+            </summary>
+        </member>
+        <member name="E:Appline.NotifyMessage.Exception">
+            <summary>
+            It will be called when the line throw any exception
             </summary>
         </member>
     </members>

@@ -7,11 +7,11 @@ namespace Appline
 {
     internal static class Markers
     {
-        public const string EMPTY = "0";
-        public const string MSG = "m";
-        public const string JSON = "j";
-        public const string XML = "x";
-        public const string SYNC = "s";
+        internal const string EMPTY = "0";
+        internal const string MSG = "m";
+        internal const string JSON = "j";
+        internal const string XML = "x";
+        internal const string SYNC = "s";
 
         internal static string UnMark(this string str)
         {

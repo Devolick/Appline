@@ -3,6 +3,10 @@ using System;
 
 namespace Appline
 {
+    /// <summary>
+    /// Line for the transfer of complex objects.
+    /// </summary>
+    /// <typeparam name="TContext">Type of the transmitted object</typeparam>
     public class ContextLine<TContext>: MessageLine, IDisposable
         where TContext : class
     {
@@ -18,24 +22,35 @@ namespace Appline
         internal ContextLine(NotifyContext<TContext> notify)
             : base(notify) { }
 
+        /// <summary>
+        /// Contains the cycle for receiving a message
+        /// </summary>
         protected override void Receive()
         {
             string msg = string.Empty;
-            while (IsConnected && IsRunning)
+            try
             {
-                msg = reader.ReadLine();
-                if (!string.IsNullOrEmpty(msg))
+                while (IsConnected && IsRunning)
                 {
-                    switch (msg[0])
+                    msg = reader.ReadLine();
+                    if (!string.IsNullOrEmpty(msg))
                     {
-                        case 'j':
-                            Notify.InvokeContextChanges(JsonConvert.DeserializeObject<TContext>(Base64Decode(msg.UnMark())));
-                            break;
-                        default:
-                            Notify.InvokeMessage(Base64Decode(msg.UnMark()));
-                            break;
+                        switch (msg[0])
+                        {
+                            case 'j':
+                                Notify.InvokeContextChanges(JsonConvert.DeserializeObject<TContext>(Base64Decode(msg.UnMark())));
+                                break;
+                            default:
+                                Notify.InvokeMessage(Base64Decode(msg.UnMark()));
+                                break;
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Notify.InvokeException(new LineException("An error occurred while receive data on the line.", ex));
+                try { Close(); } catch { }
             }
         }
         /// <summary>

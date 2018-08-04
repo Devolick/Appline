@@ -5,6 +5,9 @@ using System.Text.RegularExpressions;
 
 namespace Appline
 {
+    /// <summary>
+    /// Factory for creating lines
+    /// </summary>
     public static class LineFactory
     {
         private static T Launcher<T>(T connectLine, string filePath, int timeout, bool dotnet = false, string args = "")

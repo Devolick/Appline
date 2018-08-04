@@ -18,5 +18,6 @@
   </metadata>
   <files>
     <file src="F:\Development\C#\Core\Appline\Appline\bin\Release\netstandard2.0\Appline.dll" target="lib\netstandard2.0\Appline.dll" />
+    <file src="F:\Development\C#\Core\Appline\Appline\bin\Release\netstandard2.0\Appline.xml" target="lib\netstandard2.0\Appline.xml" />
   </files>
 </package>

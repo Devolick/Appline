@@ -9,6 +9,9 @@ using System.Windows;
 
 namespace Appline
 {
+    /// <summary>
+    /// Line for the transfer of messages.
+    /// </summary>
     public class MessageLine : IDisposable
     {
         /// <summary>
@@ -47,6 +50,9 @@ namespace Appline
         /// </summary>
         public bool IsLauncher { get; internal set; }
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         protected MessageLine()
         {
             IsLauncher = false;
@@ -65,28 +71,48 @@ namespace Appline
         /// <param name="msg">String message.</param>
         public virtual void Send(string msg)
         {
-            if (IsRunning)
+            try
             {
-                if(msg.Length < 1)
+                if (IsRunning)
                 {
-                    writer.WriteLine(Markers.EMPTY);
+                    if (msg.Length < 1)
+                    {
+                        writer.WriteLine(Markers.EMPTY);
+                    }
+                    else
+                    {
+                        writer.WriteLine($"{Markers.MSG}{Base64Encode(msg)}");
+                    }
+                    pipeOut.WaitForPipeDrain();
                 }
-                else
-                {
-                    writer.WriteLine($"{Markers.MSG}{Base64Encode(msg)}");
-                }
-                pipeOut.WaitForPipeDrain();
+            }
+            catch(Exception ex)
+            {
+                Notify.InvokeException(new LineException("An error occurred while sending data on the line.", ex));
+                try { Close(); } catch { }
             }
         }
-        protected virtual void Receive() {
+        /// <summary>
+        /// Contains the cycle for receiving a message
+        /// </summary>
+        protected virtual void Receive()
+        {
             string msg = string.Empty;
-            while (IsConnected && IsRunning)
+            try
             {
-                msg = reader.ReadLine();
-                if (!string.IsNullOrEmpty(msg))
+                while (IsConnected && IsRunning)
                 {
-                    Notify.InvokeMessage(Base64Decode(msg.UnMark()));
+                    msg = reader.ReadLine();
+                    if (!string.IsNullOrEmpty(msg))
+                    {
+                        Notify.InvokeMessage(Base64Decode(msg.UnMark()));
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Notify.InvokeException(new LineException("An error occurred while receive data on the line.", ex));
+                try { Close(); } catch { }
             }
         }
         /// <summary>
@@ -123,18 +149,26 @@ namespace Appline
         }
         internal void Await()
         {
-            if (IsLauncher)
+            try
             {
-                pipeOut.WaitForPipeDrain();
-            }
-            else
-            {
-                string msg;
-                do
+                if (IsLauncher)
                 {
-                    msg = reader.ReadLine();
+                    pipeOut.WaitForPipeDrain();
                 }
-                while (!msg.StartsWith(Markers.SYNC) && IsRunning) ;
+                else
+                {
+                    string msg;
+                    do
+                    {
+                        msg = reader.ReadLine();
+                    }
+                    while (!msg.StartsWith(Markers.SYNC) && IsRunning);
+                }
+            }
+            catch (Exception ex)
+            {
+                Notify.InvokeException(new LineException("An error occurred while connecting the line.", ex));
+                try { Close(); } catch { }
             }
         }
         internal void Work()
@@ -171,6 +205,9 @@ namespace Appline
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
 
+        /// <summary>
+        /// Release All resources used by the line.
+        /// </summary>
         public void Dispose()
         {
             Close();
