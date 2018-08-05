@@ -10,10 +10,9 @@ namespace Appline
     /// </summary>
     public static class LineFactory
     {
-        private static T Launcher<T>(T connectLine, string filePath, int timeout, bool dotnet = false, string args = "")
+        private static T Launcher<T>(T connectLine, string filePath, bool dotnet = false, string args = "")
             where T : MessageLine
         {
-            connectLine.timeout = timeout;
             connectLine.IsLauncher = true;
             var pipeIn = new AnonymousPipeServerStream(PipeDirection.In, HandleInheritability.Inheritable);
             var pipeOut = new AnonymousPipeServerStream(PipeDirection.Out, HandleInheritability.Inheritable);
@@ -83,7 +82,7 @@ namespace Appline
         /// <returns>Returns main line.</returns>
         public static MessageLine Launcher(NotifyMessage notify, string filePath, int timeout, bool dotnet = false, string args = "")
         {
-            return Launcher(new MessageLine(notify), filePath, timeout, dotnet, args);
+            return Launcher(new MessageLine(notify, timeout), filePath, dotnet, args);
         }
         /// <summary>
         /// Generates the main line object and starts the second process.
@@ -94,7 +93,7 @@ namespace Appline
         /// <param name="args">Arguments for second process.</param>
         /// <returns>Returns main line.</returns>
         public static MessageLine Launcher(string filePath, int timeout, bool dotnet = false, string args = "")
-        { return Launcher(new NotifyMessage(), filePath,timeout, dotnet, args); }
+        { return Launcher(new NotifyMessage(), filePath, timeout, dotnet, args); }
         /// <summary>
         /// Generates the main line object and starts the second process.
         /// </summary>
@@ -108,62 +107,68 @@ namespace Appline
         public static ContextLine<TContext> Launcher<TContext>(NotifyContext<TContext> notify, string filePath, int timeout, bool dotnet = false, string args = "")
             where TContext : class
         {
-            return Launcher(new ContextLine<TContext>(notify), filePath, timeout, dotnet, args);
+            return Launcher(new ContextLine<TContext>(notify, timeout), filePath, dotnet, args);
         }
 
         /// <summary>
         /// Generates the other side object of the line.
         /// </summary>
         /// <param name="notify">The notification object.</param>
+        /// <param name="timeout">Time waiting for the connection response.</param>
         /// <param name="args">Pass entry point args for connect.</param>
         /// <returns>Returns the other side of the line.</returns>
-        public static MessageLine Application(NotifyMessage notify, string args)
+        public static MessageLine Application(NotifyMessage notify, int timeout, string args)
         {
-            return Application(new MessageLine(notify), args);
+            return Application(new MessageLine(notify, timeout), args);
         }
         /// <summary>
         /// Generates the other side object of the line.
         /// </summary>
         /// <typeparam name="TContext">Type of the transmitted context.</typeparam>
         /// <param name="notify">The notification object.</param>
+        /// <param name="timeout">Time waiting for the connection response.</param>
         /// <param name="args">Pass entry point args for connect.</param>
         /// <returns>Returns the other side of the line.</returns>
-        public static ContextLine<TContext> Application<TContext>(NotifyContext<TContext> notify, string args)
+        public static ContextLine<TContext> Application<TContext>(NotifyContext<TContext> notify, int timeout, string args)
             where TContext : class
         {
-            return Application(new ContextLine<TContext>(notify), args);
+            return Application(new ContextLine<TContext>(notify, timeout), args);
         }
         /// <summary>
         /// Generates the other side object of the line.
         /// </summary>
+        /// <param name="timeout">Time waiting for the connection response.</param>
         /// <param name="args">Pass entry point args for connect.</param>
         /// <returns>Returns the other side of the line.</returns>
-        public static MessageLine Application(string args)
-        { return Application(new NotifyMessage(), args); }
+        public static MessageLine Application(int timeout, string args)
+        { return Application(new NotifyMessage(), timeout, args); }
         /// <summary>
         /// Generates the other side object of the line.
         /// </summary>
+        /// <param name="timeout">Time waiting for the connection response.</param>
         /// <param name="args">Pass entry point args for connect.</param>
         /// <returns>Returns the other side of the line.</returns>
-        public static MessageLine Application(string[] args)
-        { return Application(new NotifyMessage(), string.Join(" ", args)); }
+        public static MessageLine Application(int timeout, string[] args)
+        { return Application(new NotifyMessage(), timeout, string.Join(" ", args)); }
         /// <summary>
         /// Generates the other side object of the line.
         /// </summary>
         /// <param name="notify">The notification object.</param>
+        /// <param name="timeout">Time waiting for the connection response.</param>
         /// <param name="args">Pass entry point args for connect.</param>
         /// <returns>Returns the other side of the line.</returns>
-        public static MessageLine Application(NotifyMessage notify, string[] args)
-        { return Application(notify, string.Join(" ", args)); }
+        public static MessageLine Application(NotifyMessage notify, int timeout, string[] args)
+        { return Application(notify, timeout, string.Join(" ", args)); }
         /// <summary>
         /// Generates the other side object of the line.
         /// </summary>
         /// <typeparam name="TContext">Type of the transmitted context.</typeparam>
         /// <param name="notify">The notification object.</param>
+        /// <param name="timeout">Time waiting for the connection response.</param>
         /// <param name="args">Pass entry point args for connect.</param>
         /// <returns>Returns the other side of the line.</returns>
-        public static ContextLine<TContext> Application<TContext>(NotifyContext<TContext> notify, string[] args)
+        public static ContextLine<TContext> Application<TContext>(NotifyContext<TContext> notify, int timeout, string[] args)
             where TContext : class
-        { return Application(new ContextLine<TContext>(notify), string.Join(" ",args)); }
+        { return Application(new ContextLine<TContext>(notify, timeout), string.Join(" ",args)); }
     }
 }

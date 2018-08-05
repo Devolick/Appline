@@ -28,7 +28,7 @@ namespace Appline
         internal Process process;
         private System.Timers.Timer timer;
         private bool isOutOfTime;
-        internal int timeout;
+        private int timeout;
 
         /// <summary>
         /// Indicates the status of the line.
@@ -59,10 +59,11 @@ namespace Appline
             IsRunning = false;
             isOutOfTime = false;
         }
-        internal MessageLine(NotifyMessage notify)
+        internal MessageLine(NotifyMessage notify, int timeout)
             :this()
         {
             Notify = notify;
+            this.timeout = timeout;
         }
 
         /// <summary>
@@ -88,7 +89,7 @@ namespace Appline
             }
             catch(Exception ex)
             {
-                Notify.InvokeException(new LineException("An error occurred while sending data on the line.", ex));
+                Notify.InvokeException(new LineException("An error occurred while sending data on the line.", ex, ExCode.Send));
                 try { Close(); } catch { }
             }
         }
@@ -111,7 +112,7 @@ namespace Appline
             }
             catch (Exception ex)
             {
-                Notify.InvokeException(new LineException("An error occurred while receive data on the line.", ex));
+                Notify.InvokeException(new LineException("An error occurred while receive data on the line.", ex, ExCode.Receive));
                 try { Close(); } catch { }
             }
         }
@@ -122,14 +123,18 @@ namespace Appline
         {
             if (IsRunning)
             {
-                IsRunning = false;
-                timer.Stop();
-                writer.Close();
-                reader.Close();
-                pipeOut.Close();
-                pipeIn.Close();
+                OnlyClose();
                 Notify.InvokeDisconnected();
             }
+        }
+        private void OnlyClose()
+        {
+            IsRunning = false;
+            timer.Stop();
+            writer.Close();
+            reader.Close();
+            pipeOut.Close();
+            pipeIn.Close();
         }
 
         internal void Timer()
@@ -167,8 +172,8 @@ namespace Appline
             }
             catch (Exception ex)
             {
-                Notify.InvokeException(new LineException("An error occurred while connecting the line.", ex));
-                try { Close(); } catch { }
+                Notify.InvokeException(new LineException("An error occurred while connecting the line.", ex,ExCode.Connect));
+                try { OnlyClose(); } catch { }
             }
         }
         internal void Work()

@@ -19,8 +19,8 @@ namespace Appline
         }
 
         private ContextLine() { }
-        internal ContextLine(NotifyContext<TContext> notify)
-            : base(notify) { }
+        internal ContextLine(NotifyContext<TContext> notify, int timeout)
+            : base(notify, timeout) { }
 
         /// <summary>
         /// Contains the cycle for receiving a message
@@ -49,7 +49,7 @@ namespace Appline
             }
             catch (Exception ex)
             {
-                Notify.InvokeException(new LineException("An error occurred while receive data on the line.", ex));
+                Notify.InvokeException(new LineException("An error occurred while receive data on the line.", ex,ExCode.Receive));
                 try { Close(); } catch { }
             }
         }
@@ -77,7 +77,7 @@ namespace Appline
             }
             catch(Exception ex)
             {
-                Notify.InvokeException(new LineException("An error occurred while sending data on the line.", ex));
+                Notify.InvokeException(new LineException("An error occurred while sending data on the line.", ex, ExCode.Send));
                 try { Close(); } catch { }
             }
         }
