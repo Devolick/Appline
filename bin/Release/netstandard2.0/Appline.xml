@@ -26,6 +26,12 @@
             </summary>
             <param name="context"></param>
         </member>
+        <member name="M:Appline.ContextLine`1.Send(`0)">
+            <summary>
+            Sends the string to the other end of the line.
+            </summary>
+            <param name="context">Complex object.</param>
+        </member>
         <member name="T:Appline.LineException">
             <summary>
             The exception that is throw when there is a line fault.
@@ -168,6 +174,16 @@
         <member name="M:Appline.MessageLine.Close">
             <summary>
             Closes the line.
+            </summary>
+        </member>
+        <member name="M:Appline.MessageLine.Base64Encode(System.String)">
+            <summary>
+            Encodes a string for transmission.
+            </summary>
+        </member>
+        <member name="M:Appline.MessageLine.Base64Decode(System.String)">
+            <summary>
+            Decodes a string from transmission.
             </summary>
         </member>
         <member name="M:Appline.MessageLine.Dispose">

@@ -5,14 +5,15 @@
     <Authors>Dzmitry Dym</Authors>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageId>Appline</PackageId>
-    <Description>Appline allow to communicate between processes with Anonymous Pipes, to send messages or complex objects.</Description>
+    <Description>Appline allow to communicate between processes with Anonymous Pipes, to send messages or complex objects. Anonymous pipes provide interprocess communication on a local computer.</Description>
     <PackageLicenseUrl>https://raw.githubusercontent.com/Devolick/Appline/master/LICENSE</PackageLicenseUrl>
-    <PackageTags>Anonymous Pipes</PackageTags>
+    <PackageTags>Anonymous Pipes, IPC</PackageTags>
     <RepositoryType>github</RepositoryType>
     <PackageProjectUrl>http://nonedevelopment.net/</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/Devolick/Appline/master/appline_icon.ico</PackageIconUrl>
     <RepositoryUrl>https://github.com/Devolick/Appline</RepositoryUrl>
     <PackageReleaseNotes></PackageReleaseNotes>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

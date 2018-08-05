@@ -194,11 +194,17 @@ namespace Appline
             thread.Start();
         }
 
+        /// <summary>
+        /// Encodes a string for transmission.
+        /// </summary>
         protected string Base64Encode(string plainText)
         {
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
             return System.Convert.ToBase64String(plainTextBytes);
         }
+        /// <summary>
+        /// Decodes a string from transmission.
+        /// </summary>
         protected string Base64Decode(string base64EncodedData)
         {
             var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);

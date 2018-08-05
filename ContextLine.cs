@@ -57,12 +57,29 @@ namespace Appline
         /// Sends the object to the other end of the line.
         /// </summary>
         /// <param name="context"></param>
+        [Obsolete("SaveChanges has an invalid name, please use method Send instead.")]
         public void SaveChanges(TContext context)
         {
-            string msg = $"{Markers.JSON}{Base64Encode(JsonConvert.SerializeObject(context))}";
-            writer.WriteLine(msg);
+            Send(context);
+        }
+        /// <summary>
+        /// Sends the string to the other end of the line.
+        /// </summary>
+        /// <param name="context">Complex object.</param>
+        public void Send(TContext context)
+        {
+            try
+            {
+                string msg = $"{Markers.JSON}{Base64Encode(JsonConvert.SerializeObject(context))}";
+                writer.WriteLine(msg);
 
-            pipeOut.WaitForPipeDrain();
+                pipeOut.WaitForPipeDrain();
+            }
+            catch(Exception ex)
+            {
+                Notify.InvokeException(new LineException("An error occurred while sending data on the line.", ex));
+                try { Close(); } catch { }
+            }
         }
     }
 }
