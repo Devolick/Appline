@@ -16,11 +16,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Appline allow to communicate between processes with Anonymous Pipes, to send mess" +
     "ages or complex objects. Anonymous pipes provide interprocess communication on a" +
     " local computer.")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.0")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.3.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Appline")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Appline")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.1.0.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.1.3.0")]
 
 // Создано классом WriteCodeFragment MSBuild.
 

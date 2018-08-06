@@ -54,15 +54,6 @@ namespace Appline
             }
         }
         /// <summary>
-        /// Sends the object to the other end of the line.
-        /// </summary>
-        /// <param name="context"></param>
-        [Obsolete("SaveChanges has an invalid name, please use method Send instead.")]
-        public void SaveChanges(TContext context)
-        {
-            Send(context);
-        }
-        /// <summary>
         /// Sends the string to the other end of the line.
         /// </summary>
         /// <param name="context">Complex object.</param>

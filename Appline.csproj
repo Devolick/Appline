@@ -7,7 +7,7 @@
     <PackageId>Appline</PackageId>
     <Description>Appline allow to communicate between processes with Anonymous Pipes, to send messages or complex objects. Anonymous pipes provide interprocess communication on a local computer.</Description>
     <PackageLicenseUrl>https://raw.githubusercontent.com/Devolick/Appline/master/LICENSE</PackageLicenseUrl>
-    <PackageTags>Anonymous Pipes, IPC</PackageTags>
+    <PackageTags>Anonymous, Pipes, IPC, interprocess, communication, local, message, complex, object, AnonymousPipeServerStream, PipeStream, AnonymousPipeClientStream</PackageTags>
     <RepositoryType>github</RepositoryType>
     <PackageProjectUrl>http://nonedevelopment.net/</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/Devolick/Appline/master/appline_icon.ico</PackageIconUrl>
