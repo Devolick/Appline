@@ -13,7 +13,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/Devolick/Appline/master/appline_icon.ico</PackageIconUrl>
     <RepositoryUrl>https://github.com/Devolick/Appline</RepositoryUrl>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <Version>1.1.3</Version>
+    <Version>1.1.4</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

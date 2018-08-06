@@ -40,3 +40,4 @@ F:\Development\C#\Core\Appline\Appline\obj\Release\netstandard2.0\Appline.Assemb
 F:\Development\C#\Core\Appline\Appline\obj\Release\netstandard2.0\Appline.csproj.CopyComplete
 F:\Development\C#\Core\Appline\Appline\obj\Release\netstandard2.0\Appline.dll
 F:\Development\C#\Core\Appline\Appline\obj\Release\netstandard2.0\Appline.pdb
+F:\Development\C#\Core\Appline\Appline\obj\Release\netstandard2.0\Appline.csprojAssemblyReference.cache
