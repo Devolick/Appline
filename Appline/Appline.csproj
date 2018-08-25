@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Dzmitry Dym</Authors>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageId>Appline</PackageId>
+    <Description>Appline allow to communicate between processes with Anonymous Pipes, to send messages or complex objects. Anonymous pipes provide interprocess communication on a local computer.</Description>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/Devolick/Appline/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>Anonymous, Pipes, IPC, interprocess, communication, local, message, complex, object, AnonymousPipeServerStream, PipeStream, AnonymousPipeClientStream</PackageTags>
+    <RepositoryType>github</RepositoryType>
+    <PackageProjectUrl>http://nonedevelopment.net/</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Devolick/Appline/master/appline_icon.ico</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Devolick/Appline</RepositoryUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <Version>1.1.4</Version>
+    <ApplicationIcon />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\Appline.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\NuGetPackages\newtonsoft.json\9.0.1\lib\netstandard1.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
